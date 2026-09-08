@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/media-preprocessor/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -19,6 +20,9 @@
 
 # production
 /build
+
+# local media imports and full-resolution staging
+/.media-staging/
 
 # misc
 .DS_Store

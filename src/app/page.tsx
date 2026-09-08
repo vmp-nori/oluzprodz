@@ -1,15 +1,8 @@
 import Image from "next/image";
 import { MetricValue } from "@/components/ui/metric-value";
 import { socialLinks } from "@/domains/contact/config/social-links";
+import { PortfolioGallery } from "@/domains/portfolio/components/portfolio-gallery";
 import { profile } from "@/domains/profile/data/profile";
-
-const reelPanels = [
-  { id: "opening-wide", shape: "wide" },
-  { id: "portrait", shape: "portrait" },
-  { id: "center-standard", shape: "standard" },
-  { id: "closing-wide", shape: "wide" },
-  { id: "closing-standard", shape: "standard" },
-];
 
 export default function Home() {
   return (
@@ -17,10 +10,10 @@ export default function Home() {
       <section className="hero" id="top" aria-labelledby="hero-title">
         <Image
           className="hero-image"
-          src="/images/oluprodz-landing-v2.png"
+          src="/assets/oluprodz-landing2v2.png"
           alt="Oluwasegun Ogunjobi reviewing footage on his camera"
           fill
-          priority
+          preload
           quality={86}
           sizes="100vw"
         />
@@ -80,6 +73,7 @@ export default function Home() {
       </section>
 
       <nav className="mobile-dock" aria-label="Mobile page sections">
+        <a href="#top">Home</a>
         <a href="#work">Work</a>
         <a href="#profile">Experience</a>
         <a href="#capabilities">Toolkit</a>
@@ -95,27 +89,12 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="portfolio-reel" aria-hidden="true">
-          {["left", "right"].map((direction) => (
-            <div className="reel-row" key={direction}>
-              <div className={`reel-track reel-track-${direction}`}>
-                {[0, 1].map((copy) => (
-                  <div className="reel-set" key={copy}>
-                    {reelPanels.map((panel) => (
-                      <div
-                        className={`reel-panel reel-panel-${panel.shape}`}
-                        key={`${copy}-${panel.id}`}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <PortfolioGallery />
 
         <div className="archive-note">
-          <p>The full photo and reel archive is being assembled.</p>
+          <p>
+            Selected frames from courtside, field, event, and campaign work.
+          </p>
           <a href={socialLinks.instagram.href} target="_blank" rel="noreferrer">
             See current work on Instagram
           </a>
@@ -135,22 +114,9 @@ export default function Home() {
           </p>
         </div>
 
-        <section
-          className="impact-ledger"
-          aria-label="Illustrative performance metrics"
-        >
-          <div className="primary-metric">
-            <strong>
-              <MetricValue value={profile.analytics[0].value} />
-            </strong>
-            <div>
-              <span>{profile.analytics[0].label}</span>
-              <small>Illustrative data · replace with verified analytics</small>
-            </div>
-          </div>
-
-          <dl className="supporting-metrics">
-            {profile.analytics.slice(1).map((metric, index) => (
+        <section className="impact-ledger" aria-label="Performance metrics">
+          <dl>
+            {profile.analytics.map((metric, index) => (
               <div key={metric.label}>
                 <dt>{metric.label}</dt>
                 <dd>
@@ -160,30 +126,6 @@ export default function Home() {
             ))}
           </dl>
         </section>
-
-        <div className="experience-reels">
-          {profile.featuredReels.map((reel, index) => (
-            <article className="experience-reel" key={reel.title}>
-              <div
-                className="reel-placeholder"
-                role="img"
-                aria-label="Instagram reel placeholder"
-              >
-                <span>REEL / 0{index + 1}</span>
-                <p>Instagram embed</p>
-              </div>
-              <div className="reel-caption">
-                <div>
-                  <h3>{reel.title}</h3>
-                  <p>{reel.client}</p>
-                </div>
-                <p>
-                  <strong>{reel.views}</strong> views
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
 
         <div className="career-block">
           <div className="career-intro">
@@ -208,9 +150,12 @@ export default function Home() {
                     </div>
                   )}
                 </div>
-                <div className="timeline-axis" aria-hidden="true">
-                  <span>{role.dates}</span>
-                  <i />
+                <div className="timeline-axis">
+                  <span>
+                    {role.dates}
+                    {role.current ? <b>Current</b> : null}
+                  </span>
+                  <i aria-hidden="true" />
                 </div>
                 <div className="timeline-copy">
                   <p className="timeline-company">{role.company}</p>
