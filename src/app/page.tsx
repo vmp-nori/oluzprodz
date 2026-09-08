@@ -2,6 +2,7 @@ import Image from "next/image";
 import { MetricValue } from "@/components/ui/metric-value";
 import { socialLinks } from "@/domains/contact/config/social-links";
 import { PortfolioGallery } from "@/domains/portfolio/components/portfolio-gallery";
+import { SoftwareIcon } from "@/domains/profile/components/software-icon";
 import { profile } from "@/domains/profile/data/profile";
 
 export default function Home() {
@@ -127,6 +128,30 @@ export default function Home() {
           </dl>
         </section>
 
+        <div className="experience-reels">
+          {profile.featuredReels.map((reel, index) => (
+            <article className="experience-reel" key={reel.title}>
+              <div
+                className="reel-placeholder"
+                role="img"
+                aria-label="Instagram reel placeholder"
+              >
+                <span>REEL / 0{index + 1}</span>
+                <p>Instagram embed</p>
+              </div>
+              <div className="reel-caption">
+                <div>
+                  <h3>{reel.title}</h3>
+                  <p>{reel.client}</p>
+                </div>
+                <p>
+                  <strong>{reel.views}</strong> views
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+
         <div className="career-block">
           <div className="career-intro">
             <h3>Career timeline</h3>
@@ -213,7 +238,7 @@ export default function Home() {
                         role="img"
                         aria-label={app.name}
                       >
-                        {app.shortName}
+                        <SoftwareIcon tone={app.tone} />
                       </span>
                     </div>
                   </li>
