@@ -24,6 +24,9 @@ export function MetricValue({ value, delay = 0 }: MetricValueProps) {
         />
         {suffix}
       </span>
+      <span className="metric-reduced" aria-hidden="true">
+        {value}
+      </span>
       <span className="sr-only">{value}</span>
     </>
   );

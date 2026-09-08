@@ -19,6 +19,14 @@
 - Preserve the destination order and anchors: Work (`#work`), Experience (`#profile`), Capabilities (`#capabilities`), and Contact (`#contact`). These are the real page destinations, not decorative labels. The legacy `#profile` anchor remains stable while the visitor-facing label is Experience.
 - Use the muted-lavender accent for hover and keyboard-focus feedback while keeping the indexed brackets and numerals visually subordinate to the labels.
 
+## Mobile composition
+
+- Treat mobile as a portrait-first edit of the same portfolio, not a scaled desktop canvas.
+- Use the locally served Archivo face for mobile display headings so the touch experience does not depend on a third-party font request.
+- Use a full-height photographic hero, horizontally scrollable media lanes, and a single-axis career timeline.
+- Keep primary destinations in a persistent bottom dock sized for touch; retain the same anchors and information architecture as desktop.
+- Respect device safe areas and allow media to be replaced without changing the surrounding mobile composition.
+
 ## Accessibility
 
 - Keyboard-visible focus states

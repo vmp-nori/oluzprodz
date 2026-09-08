@@ -2,7 +2,7 @@
 
 ## Product
 
-A desktop-first personal portfolio showcasing Olu's sports photography, short-form videography, and media experience.
+A responsive personal portfolio showcasing Olu's sports photography, short-form videography, and media experience.
 
 ## Users and problem
 
@@ -22,14 +22,13 @@ Problem: Visitors need a fast, memorable way to assess Olu's visual work, experi
 
 ## Success
 
-- A desktop visitor can understand Olu's creative focus from the first viewport.
+- A visitor can understand Olu's creative focus from the first viewport on mobile or desktop.
 - A visitor can view representative photography and reels when those assets are supplied.
 - A visitor can reach Olu through the verified Instagram profile.
-- Unsupported narrow screens receive a clear desktop-view message instead of a broken experience.
+- Mobile visitors can browse the complete portfolio with touch-friendly navigation and media lanes.
 
 ## Non-goals
 
-- Mobile website experience
 - Self-service gallery or CMS
 - Email contact form
 - Payments, commerce, accounts, or bookings

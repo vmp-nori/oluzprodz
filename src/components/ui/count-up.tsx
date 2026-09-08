@@ -5,8 +5,8 @@ import {
   animate,
   type MotionValue,
   motion,
-  useInView,
   useMotionValue,
+  useReducedMotion,
   useTransform,
 } from "motion/react";
 import * as React from "react";
@@ -171,11 +171,33 @@ function CountUp({
   onEnd,
 }: CountUpProps) {
   const ref = React.useRef<HTMLSpanElement>(null);
+  const shouldReduceMotion = useReducedMotion();
   const motionValue = useMotionValue(direction === "down" ? to : from);
-  const isInView = useInView(ref, {
-    once: false,
-    margin: "0px 0px 12% 0px",
-  });
+  const [isInView, setIsInView] = React.useState(false);
+
+  React.useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    if (!("IntersectionObserver" in window)) {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setIsInView(true);
+        observer.disconnect();
+      },
+      { rootMargin: "0px 0px -8%" },
+    );
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const getDecimalPlaces = (number: number) => {
     const decimals = number.toString().split(".")[1];
@@ -198,6 +220,9 @@ function CountUp({
 
   const target = direction === "down" ? from : to;
   const initialValue = direction === "down" ? to : from;
+  const [displayValue, setDisplayValue] = React.useState(() =>
+    formatValue(initialValue),
+  );
   const [chars, setChars] = React.useState(() =>
     formatValue(initialValue).split(""),
   );
@@ -205,13 +230,21 @@ function CountUp({
   React.useEffect(() => {
     const initial = formatValue(initialValue);
     if (digitEffect === "none") {
-      if (ref.current) ref.current.textContent = initial;
+      setDisplayValue(initial);
     } else if (digitEffect !== "slide") {
       setChars(initial.split(""));
     }
   }, [digitEffect, formatValue, initialValue]);
 
   React.useEffect(() => {
+    if (shouldReduceMotion) {
+      const finalValue = formatValue(target);
+      motionValue.jump(target);
+      setDisplayValue(finalValue);
+      setChars(finalValue.split(""));
+      return;
+    }
+
     if (!isInView || !startWhen) {
       motionValue.jump(initialValue);
       return;
@@ -237,11 +270,13 @@ function CountUp({
   }, [
     delay,
     duration,
+    formatValue,
     isInView,
     initialValue,
     motionValue,
     onEnd,
     onStart,
+    shouldReduceMotion,
     startWhen,
     target,
   ]);
@@ -250,7 +285,7 @@ function CountUp({
     () =>
       motionValue.on("change", (latest) => {
         if (digitEffect === "none") {
-          if (ref.current) ref.current.textContent = formatValue(latest);
+          setDisplayValue(formatValue(latest));
         } else if (digitEffect !== "slide") {
           setChars(formatValue(latest).split(""));
         }
@@ -296,7 +331,11 @@ function CountUp({
   }
 
   if (digitEffect === "none") {
-    return <span ref={ref} className={cn(className)} />;
+    return (
+      <span ref={ref} className={cn(className)}>
+        {displayValue}
+      </span>
+    );
   }
 
   return (

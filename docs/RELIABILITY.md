@@ -4,7 +4,7 @@
 
 - The static portfolio remains useful when optional enhancement code fails
 - Contact links never depend on client-side JavaScript
-- The unsupported-width state is deterministic
+- Mobile and desktop compositions preserve the same content and destinations
 
 ## Known failure modes
 
@@ -32,7 +32,7 @@ Performance targets:
 - Largest Contentful Paint below 2.5 seconds on typical broadband
 - Interaction to Next Paint below 200 milliseconds
 - Cumulative Layout Shift below 0.1
-- No horizontal overflow at widths of 1024 CSS pixels or greater
+- No page-level horizontal overflow at supported widths from 320 CSS pixels upward
 - Target 60 frames per second for enhanced motion with graceful fallback
 
 External-system fixtures:
