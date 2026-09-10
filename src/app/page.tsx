@@ -314,8 +314,8 @@ export default function Home() {
           <div className="toolkit-media">
             <div className="toolkit-media-landscape">
               <Image
-                src="/media/capabilities/court-session.jpg"
-                alt="Basketball player carrying the ball during a court session in China"
+                src="/media/capabilities/west-virginia-team.jpg"
+                alt="West Virginia football players and coaches posing together beside the field"
                 fill
                 sizes="(max-width: 1023px) 100vw, 58vw"
               />

@@ -5,6 +5,7 @@ export const profile = {
   analytics: [
     { value: "2.8M+", label: "Accounts reached" },
     { value: "526K", label: "Views · past 90 days" },
+    { value: "11K", label: "Interactions" },
     { value: "68%", label: "Non-follower viewership" },
   ],
   featuredReels: [
