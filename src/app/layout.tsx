@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, IBM_Plex_Mono } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -26,7 +27,7 @@ export const viewport: Viewport = {
   themeColor: "#0d0d0f",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${archivo.variable} ${plexMono.variable}`}>
       <body>{children}</body>
