@@ -1,0 +1,14 @@
+# Local build and dependency artifacts
+.next
+node_modules
+media-preprocessor/node_modules
+
+# Source media staging/imports are not part of the deployed site
+.media-staging
+reels-1080
+
+# Development-only tooling and archives
+media-preprocessor
+media-preprocessor.tar.gz
+docs
+.git

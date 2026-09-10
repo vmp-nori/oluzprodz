@@ -23,6 +23,7 @@
 
 # local media imports and full-resolution staging
 /.media-staging/
+/reels-1080/
 
 # misc
 .DS_Store

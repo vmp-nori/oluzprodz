@@ -2,8 +2,41 @@ import Image from "next/image";
 import { MetricValue } from "@/components/ui/metric-value";
 import { socialLinks } from "@/domains/contact/config/social-links";
 import { PortfolioGallery } from "@/domains/portfolio/components/portfolio-gallery";
+import { FeaturedReelVideo } from "@/domains/profile/components/featured-reel-video";
 import { SoftwareIcon } from "@/domains/profile/components/software-icon";
 import { profile } from "@/domains/profile/data/profile";
+
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4.25" />
+      <circle className="icon-fill" cx="17.4" cy="6.8" r="1" />
+    </svg>
+  );
+}
+
+function ReelActions() {
+  return (
+    <span className="reel-actions-icons" aria-hidden="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.8 4.6a5.6 5.6 0 0 0-7.9 0L12 5.5l-.9-.9a5.6 5.6 0 0 0-7.9 7.9l.9.9L12 21.2l7.9-7.8.9-.9a5.6 5.6 0 0 0 0-7.9Z" />
+      </svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.5 9.5 0 0 1-3.9-.9L3 21l1.7-4.8a8.4 8.4 0 1 1 16.3-4.7Z" />
+      </svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m22 2-7 20-4-9-9-4 20-7Z" />
+        <path d="m22 2-11 11" />
+      </svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle className="icon-fill" cx="5" cy="12" r="1" />
+        <circle className="icon-fill" cx="12" cy="12" r="1" />
+        <circle className="icon-fill" cx="19" cy="12" r="1" />
+      </svg>
+    </span>
+  );
+}
 
 export default function Home() {
   return (
@@ -129,25 +162,69 @@ export default function Home() {
         </section>
 
         <div className="experience-reels">
-          {profile.featuredReels.map((reel, index) => (
-            <article className="experience-reel" key={reel.title}>
-              <div
-                className="reel-placeholder"
-                role="img"
-                aria-label="Instagram reel placeholder"
-              >
-                <span>REEL / 0{index + 1}</span>
-                <p>Instagram embed</p>
+          {profile.featuredReels.map((reel) => (
+            <article
+              className={`experience-reel experience-reel-${reel.orientation}`}
+              key={reel.title}
+            >
+              <div className="reel-frame">
+                <FeaturedReelVideo
+                  title={reel.title}
+                  src={reel.src}
+                  poster={reel.poster}
+                  width={reel.width}
+                  height={reel.height}
+                />
+                <a
+                  className="reel-platform"
+                  href={reel.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`View ${reel.title} on Instagram`}
+                >
+                  <InstagramIcon />
+                  <span>Reels</span>
+                </a>
+                <div className="reel-actions" aria-hidden="true">
+                  <ReelActions />
+                </div>
               </div>
               <div className="reel-caption">
                 <div>
                   <h3>{reel.title}</h3>
                   <p>{reel.client}</p>
                 </div>
-                <p>
-                  <strong>{reel.views}</strong> views
-                </p>
+                <div className="reel-caption-meta">
+                  <p>
+                    <strong>{reel.views}</strong> views
+                  </p>
+                  <a href={reel.href} target="_blank" rel="noreferrer">
+                    Open reel <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
               </div>
+              <dl className="reel-insights" aria-label="Reel engagement">
+                <div>
+                  <dt>Views</dt>
+                  <dd>{reel.views}</dd>
+                </div>
+                <div>
+                  <dt>Likes</dt>
+                  <dd>{reel.likes}</dd>
+                </div>
+                <div>
+                  <dt>Shares</dt>
+                  <dd
+                    title={
+                      reel.shares === null
+                        ? "Not publicly available from Instagram"
+                        : undefined
+                    }
+                  >
+                    {reel.shares ?? "—"}
+                  </dd>
+                </div>
+              </dl>
             </article>
           ))}
         </div>
@@ -262,7 +339,13 @@ export default function Home() {
         >
           Instagram <span aria-hidden="true">↗</span>
         </a>
-        <p className="footer-meta">© {new Date().getFullYear()} OluProdz</p>
+        <div className="footer-meta">
+          <p>© 2026 noriverse.cloud</p>
+          <p className="footer-credit">
+            <span>need a website?</span>
+            <a href="mailto:me@noriverse.cloud">email: me@noriverse.cloud</a>
+          </p>
+        </div>
       </footer>
     </main>
   );
