@@ -66,6 +66,7 @@ export function FeaturedReelVideo({
       ref={videoRef}
       className="featured-reel-video"
       aria-label={`${title} video`}
+      autoPlay
       loop
       muted
       playsInline

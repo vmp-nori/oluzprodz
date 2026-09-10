@@ -5,6 +5,7 @@ import {
   portfolioPhotos,
   portfolioVideos,
 } from "../data/portfolio-media";
+import { CarouselReelRow } from "./carousel-reel-row";
 import { CarouselVideo } from "./carousel-video";
 
 type GalleryItem =
@@ -44,49 +45,48 @@ export function PortfolioGallery() {
   return (
     <div className="portfolio-reel">
       {mediaRows.map((items, rowIndex) => (
-        <div className="reel-row" key={`portfolio-row-${rowIndex + 1}`}>
-          <div
-            className={`reel-track reel-track-${rowIndex === 0 ? "left" : "right"}`}
-          >
-            {[false, true].map((isDuplicate) => (
-              <ol
-                className="reel-set"
-                aria-hidden={isDuplicate || undefined}
-                aria-label={
-                  isDuplicate
-                    ? undefined
-                    : `Portfolio photographs and films, row ${rowIndex + 1}`
-                }
-                key={isDuplicate ? "duplicate" : "original"}
-              >
-                {items.map((item) => {
-                  const orientation =
-                    item.media.width > item.media.height
-                      ? "landscape"
-                      : "portrait";
+        <CarouselReelRow
+          direction={rowIndex === 0 ? "left" : "right"}
+          key={`portfolio-row-${rowIndex + 1}`}
+        >
+          {[false, true].map((isDuplicate) => (
+            <ol
+              className="reel-set"
+              aria-hidden={isDuplicate || undefined}
+              aria-label={
+                isDuplicate
+                  ? undefined
+                  : `Portfolio photographs and films, row ${rowIndex + 1}`
+              }
+              key={isDuplicate ? "duplicate" : "original"}
+            >
+              {items.map((item) => {
+                const orientation =
+                  item.media.width > item.media.height
+                    ? "landscape"
+                    : "portrait";
 
-                  return (
-                    <li
-                      className={`reel-panel reel-panel-${orientation}`}
-                      key={`${item.kind}-${item.media.id}`}
-                    >
-                      {item.kind === "photo" ? (
-                        <Image
-                          src={`/media/gallery/images/${item.media.id}.avif`}
-                          alt={isDuplicate ? "" : item.media.alt}
-                          fill
-                          sizes="(max-width: 1023px) 64vw, 18vw"
-                        />
-                      ) : (
-                        <CarouselVideo video={item.media} />
-                      )}
-                    </li>
-                  );
-                })}
-              </ol>
-            ))}
-          </div>
-        </div>
+                return (
+                  <li
+                    className={`reel-panel reel-panel-${orientation}`}
+                    key={`${item.kind}-${item.media.id}`}
+                  >
+                    {item.kind === "photo" ? (
+                      <Image
+                        src={`/media/gallery/images/${item.media.id}.avif`}
+                        alt={isDuplicate ? "" : item.media.alt}
+                        fill
+                        sizes="(max-width: 1023px) 64vw, 18vw"
+                      />
+                    ) : (
+                      <CarouselVideo video={item.media} />
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          ))}
+        </CarouselReelRow>
       ))}
     </div>
   );

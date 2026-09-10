@@ -8,4 +8,9 @@ describe("social links", () => {
     );
     expect(new URL(socialLinks.instagram.href).pathname).toBe("/oluzprodz/");
   });
+
+  it("keeps the verified YouTube destination", () => {
+    expect(new URL(socialLinks.youtube.href).hostname).toBe("www.youtube.com");
+    expect(new URL(socialLinks.youtube.href).pathname).toBe("/@OluzProdz");
+  });
 });

@@ -34,4 +34,10 @@
 - Respect prefers-reduced-motion
 - Descriptive alt text for meaningful images and empty alt text for decoration
 
+## Dividers and grouping
+
+- Group content through proximity, spacing, type hierarchy, and restrained tonal surfaces before introducing rules.
+- Reserve visible lines for functional boundaries, focus states, media frames, and the career timeline; do not separate every row in editorial lists.
+- When adjacent full-width sections share a base theme, distinguish them with a subtle charcoal tone shift and generous spacing instead of stacked horizontal dividers.
+
 Review feedback that recurs must become a durable rule, check, or design document.

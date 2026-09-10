@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { MetricValue } from "@/components/ui/metric-value";
+import { ContactForm } from "@/domains/contact/components/contact-form";
+import { contactDetails } from "@/domains/contact/config/contact-details";
 import { socialLinks } from "@/domains/contact/config/social-links";
 import { PortfolioGallery } from "@/domains/portfolio/components/portfolio-gallery";
 import { FeaturedReelVideo } from "@/domains/profile/components/featured-reel-video";
@@ -12,6 +14,17 @@ function InstagramIcon() {
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4.25" />
       <circle className="icon-fill" cx="17.4" cy="6.8" r="1" />
+    </svg>
+  );
+}
+
+function YouTubeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        className="icon-fill"
+        d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"
+      />
     </svg>
   );
 }
@@ -38,7 +51,45 @@ function ReelActions() {
   );
 }
 
+type FeaturedReel = (typeof profile.featuredReels)[number];
+
+function FeaturedReelCard({ reel }: { reel: FeaturedReel }) {
+  return (
+    <article className={`experience-reel experience-reel-${reel.orientation}`}>
+      <div className="reel-frame">
+        <FeaturedReelVideo
+          title={reel.title}
+          src={reel.src}
+          poster={reel.poster}
+          width={reel.width}
+          height={reel.height}
+        />
+        <a
+          className="reel-platform"
+          href={reel.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`View ${reel.title} on Instagram`}
+        >
+          <InstagramIcon />
+          <span>Reels</span>
+        </a>
+        <div className="reel-actions" aria-hidden="true">
+          <ReelActions />
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default function Home() {
+  const landscapeReels = profile.featuredReels.filter(
+    (reel) => reel.orientation !== "portrait",
+  );
+  const portraitReels = profile.featuredReels.filter(
+    (reel) => reel.orientation === "portrait",
+  );
+
   return (
     <main className="desktop-site">
       <section className="hero" id="top" aria-labelledby="hero-title">
@@ -85,7 +136,7 @@ export default function Home() {
         </header>
 
         <p className="mobile-hero-index" aria-hidden="true">
-          SPORTS / PHOTO / MOTION
+          <span>SPORTS /</span> <span>PHOTO /</span> <span>MOTION</span>
         </p>
 
         <div className="hero-copy">
@@ -94,14 +145,16 @@ export default function Home() {
             <br />
             in motion.
           </h1>
-          <p className="hero-specialties">SPORTS / PHOTOGRAPHY / VIDEOGRAPHY</p>
+          <p className="hero-specialties">
+            <span>SPORTS /</span> <span>PHOTOGRAPHY /</span>{" "}
+            <span>VIDEOGRAPHY</span>
+          </p>
         </div>
 
         <div className="hero-footer">
           <p className="hero-tagline">
-            Crafting visual stories
-            <br />
-            for individuals and brands.
+            <span>Crafting visual stories</span>
+            <span>for individuals and brands.</span>
           </p>
         </div>
       </section>
@@ -162,71 +215,16 @@ export default function Home() {
         </section>
 
         <div className="experience-reels">
-          {profile.featuredReels.map((reel) => (
-            <article
-              className={`experience-reel experience-reel-${reel.orientation}`}
-              key={reel.title}
-            >
-              <div className="reel-frame">
-                <FeaturedReelVideo
-                  title={reel.title}
-                  src={reel.src}
-                  poster={reel.poster}
-                  width={reel.width}
-                  height={reel.height}
-                />
-                <a
-                  className="reel-platform"
-                  href={reel.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`View ${reel.title} on Instagram`}
-                >
-                  <InstagramIcon />
-                  <span>Reels</span>
-                </a>
-                <div className="reel-actions" aria-hidden="true">
-                  <ReelActions />
-                </div>
-              </div>
-              <div className="reel-caption">
-                <div>
-                  <h3>{reel.title}</h3>
-                  <p>{reel.client}</p>
-                </div>
-                <div className="reel-caption-meta">
-                  <p>
-                    <strong>{reel.views}</strong> views
-                  </p>
-                  <a href={reel.href} target="_blank" rel="noreferrer">
-                    Open reel <span aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </div>
-              <dl className="reel-insights" aria-label="Reel engagement">
-                <div>
-                  <dt>Views</dt>
-                  <dd>{reel.views}</dd>
-                </div>
-                <div>
-                  <dt>Likes</dt>
-                  <dd>{reel.likes}</dd>
-                </div>
-                <div>
-                  <dt>Shares</dt>
-                  <dd
-                    title={
-                      reel.shares === null
-                        ? "Not publicly available from Instagram"
-                        : undefined
-                    }
-                  >
-                    {reel.shares ?? "—"}
-                  </dd>
-                </div>
-              </dl>
-            </article>
-          ))}
+          <div className="experience-reel-column">
+            {landscapeReels.map((reel) => (
+              <FeaturedReelCard reel={reel} key={reel.title} />
+            ))}
+          </div>
+          <div className="experience-reel-portraits">
+            {portraitReels.map((reel) => (
+              <FeaturedReelCard reel={reel} key={reel.title} />
+            ))}
+          </div>
         </div>
 
         <div className="career-block">
@@ -235,22 +233,19 @@ export default function Home() {
             <p>{profile.summary}</p>
           </div>
           <ol className="career-timeline" aria-label="Career timeline">
-            {profile.experience.map((role, index) => (
+            {profile.experience.map((role) => (
               <li key={`${role.company}-${role.dates}`}>
                 <div className="timeline-visual">
-                  {role.image ? (
-                    <Image
-                      src={role.image}
-                      alt={`${role.company} career moment`}
-                      fill
-                      sizes="(min-width: 1181px) 36vw, 42vw"
-                    />
-                  ) : (
-                    <div className="timeline-image-slot" aria-hidden="true">
-                      <span>IMAGE / {String(index + 1).padStart(2, "0")}</span>
-                      <p>Add an era photo</p>
+                  {role.images.map((image) => (
+                    <div className="timeline-image-frame" key={image.src}>
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes="(min-width: 1181px) 36vw, (min-width: 768px) 42vw, 80vw"
+                      />
                     </div>
-                  )}
+                  ))}
                 </div>
                 <div className="timeline-axis">
                   <span>
@@ -266,6 +261,30 @@ export default function Home() {
               </li>
             ))}
           </ol>
+
+          <section className="footprint" aria-labelledby="footprint-title">
+            <div className="footprint-heading">
+              <h3 id="footprint-title">Work footprint</h3>
+            </div>
+            <div className="footprint-groups">
+              <div className="footprint-group">
+                <h4>Locations</h4>
+                <ul>
+                  {profile.footprint.locations.map((location) => (
+                    <li key={location}>{location}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="footprint-group">
+                <h4>Notable people / brands</h4>
+                <ul>
+                  {profile.footprint.notableNames.map((name) => (
+                    <li key={name}>{name}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -292,32 +311,41 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="toolkit-software">
-            <div className="toolkit-software-heading">
-              <h3>Editing desk</h3>
-              <span>{profile.software.length} editing apps</span>
+          <div className="toolkit-media">
+            <div className="toolkit-media-landscape">
+              <Image
+                src="/media/capabilities/court-session.jpg"
+                alt="Basketball player carrying the ball during a court session in China"
+                fill
+                sizes="(max-width: 1023px) 100vw, 58vw"
+              />
             </div>
+            <div className="toolkit-media-portrait">
+              <Image
+                src="/media/capabilities/player-focus.jpg"
+                alt="Basketball player wearing red headphones and holding a ball"
+                fill
+                sizes="(max-width: 1023px) 42vw, 18vw"
+              />
+            </div>
+          </div>
+
+          <div className="toolkit-software">
+            <h3>Editing desk</h3>
             <div className="software-keyboard">
               <ul
                 className="software-grid"
                 aria-label="Post-production software"
               >
                 {profile.software.map((app) => (
-                  <li
-                    className={`software-key software-key-${app.tone}`}
-                    key={app.name}
-                    title={app.name}
-                  >
-                    <div className="software-key-switch" aria-hidden="true" />
-                    <div className="software-keycap">
-                      <span
-                        className="software-app-mark"
-                        role="img"
-                        aria-label={app.name}
-                      >
-                        <SoftwareIcon tone={app.tone} />
-                      </span>
-                    </div>
+                  <li key={app.name}>
+                    <span
+                      className="software-logo"
+                      role="img"
+                      aria-label={app.name}
+                    >
+                      <SoftwareIcon tone={app.tone} />
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -327,24 +355,35 @@ export default function Home() {
       </section>
 
       <footer id="contact">
-        <div>
+        <div className="contact-heading">
           <p>Have something worth capturing?</p>
           <h2>Talk to Olu.</h2>
         </div>
-        <a
-          className="contact-link"
-          href={socialLinks.instagram.href}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Instagram <span aria-hidden="true">↗</span>
-        </a>
+        <div className="contact-layout">
+          <ContactForm recipient={contactDetails.email} />
+          <nav className="contact-links" aria-label="Social profiles">
+            {[socialLinks.instagram, socialLinks.youtube].map((social) => (
+              <a
+                className="contact-link"
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                key={social.label}
+              >
+                <span>{social.label}</span>
+                <span className="contact-platform-icon" aria-hidden="true">
+                  {social.label === "Instagram" ? (
+                    <InstagramIcon />
+                  ) : (
+                    <YouTubeIcon />
+                  )}
+                </span>
+              </a>
+            ))}
+          </nav>
+        </div>
         <div className="footer-meta">
           <p>© 2026 noriverse.cloud</p>
-          <p className="footer-credit">
-            <span>need a website?</span>
-            <a href="mailto:me@noriverse.cloud">email: me@noriverse.cloud</a>
-          </p>
         </div>
       </footer>
     </main>
