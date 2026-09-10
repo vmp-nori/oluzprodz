@@ -1008,7 +1008,7 @@ footer h2 {
     filter 650ms var(--ease-out);
 }
 .toolkit-media-landscape img {
-  object-position: center 32%;
+  object-position: 58% 58%;
 }
 .toolkit-media-portrait img {
   object-position: center 44%;
