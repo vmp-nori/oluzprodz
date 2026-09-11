@@ -1500,7 +1500,7 @@ footer h2 {
     scroll-padding-top: 1rem;
   }
   body {
-    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
+    padding-bottom: 0;
     overflow-x: hidden;
   }
   .desktop-site {
@@ -1560,7 +1560,7 @@ footer h2 {
   .hero-copy {
     top: auto;
     right: var(--mobile-gutter);
-    bottom: clamp(8.5rem, 19svh, 11rem);
+    bottom: clamp(9.75rem, 22svh, 12rem);
     left: var(--mobile-gutter);
     transform: none;
   }
@@ -1728,7 +1728,7 @@ footer h2 {
   .impact-ledger {
     min-width: 0;
     margin-top: 2.5rem;
-    padding: 0.25rem 1.25rem 3rem;
+    padding: 0.25rem 1.25rem 1.25rem;
   }
   .impact-ledger dl {
     display: grid;
@@ -1753,6 +1753,13 @@ footer h2 {
   .impact-ledger dd {
     order: 2;
     font-size: clamp(2.75rem, 13vw, 4rem);
+  }
+  .impact-window {
+    position: static;
+    margin-top: 0.75rem;
+    color: rgb(239 237 240 / 68%);
+    font-size: 0.75rem;
+    text-align: right;
   }
   .experience-reels {
     display: flex;
@@ -1935,7 +1942,7 @@ footer h2 {
   }
   footer {
     padding-top: 4.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: calc(6.75rem + env(safe-area-inset-bottom));
     gap: 3rem;
   }
   footer h2 {
@@ -1985,6 +1992,14 @@ footer h2 {
   }
   .contact-form-action button {
     width: 100%;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 500px) and (orientation: landscape) {
+  .hero-copy h1 {
+    max-width: 13ch;
+    font-size: clamp(3rem, 8vw, 4.25rem);
+    line-height: 0.86;
   }
 }
 
