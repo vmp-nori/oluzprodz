@@ -277,7 +277,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="footprint-group">
-                <h4>Selected people and brands</h4>
+                <h4>Worked with</h4>
                 <ul>
                   {profile.footprint.notableNames.map((name) => (
                     <li key={name}>{name}</li>

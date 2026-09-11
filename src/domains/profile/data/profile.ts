@@ -148,6 +148,7 @@ export const profile = {
       "Nick Kyrgios",
       "JD Sports",
       "Foot Locker",
+      "Puma",
       "Mathew Richardson",
     ],
   },
