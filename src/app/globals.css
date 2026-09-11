@@ -39,6 +39,10 @@ body {
   line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
+::selection {
+  background: var(--accent);
+  color: var(--ink);
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -686,12 +690,6 @@ footer h2 {
   from {
     opacity: 0;
     transform: translateY(24px);
-  }
-}
-
-@keyframes timeline-fade {
-  from {
-    opacity: 0;
   }
 }
 
@@ -1370,13 +1368,19 @@ footer h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reel-set[aria-hidden="true"] {
+    display: none;
+  }
   @supports (animation-timeline: view()) {
     .career-intro h3,
     .career-intro p,
     .timeline-visual,
     .timeline-axis,
     .timeline-copy {
-      animation-name: timeline-fade;
+      animation: none;
     }
   }
   .wordmark,
@@ -1499,10 +1503,6 @@ footer h2 {
     padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
     overflow-x: hidden;
   }
-  ::selection {
-    background: var(--accent);
-    color: var(--ink);
-  }
   .desktop-site {
     display: block;
   }
@@ -1577,7 +1577,7 @@ footer h2 {
   }
   .hero-footer {
     right: var(--mobile-gutter);
-    bottom: 2rem;
+    bottom: calc(5.75rem + env(safe-area-inset-bottom));
     left: var(--mobile-gutter);
     display: flex;
     align-items: flex-end;
