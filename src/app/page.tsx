@@ -212,6 +212,7 @@ export default function Home() {
               </div>
             ))}
           </dl>
+          <p className="impact-window">*past 90 days</p>
         </section>
 
         <div className="experience-reels">
@@ -249,7 +250,7 @@ export default function Home() {
                 </div>
                 <div className="timeline-axis">
                   <span>
-                    {role.dates}
+                    <time>{role.dates}</time>
                     {role.current ? <b>Current</b> : null}
                   </span>
                   <i aria-hidden="true" />
@@ -276,7 +277,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="footprint-group">
-                <h4>Notable people / brands</h4>
+                <h4>Selected people and brands</h4>
                 <ul>
                   {profile.footprint.notableNames.map((name) => (
                     <li key={name}>{name}</li>

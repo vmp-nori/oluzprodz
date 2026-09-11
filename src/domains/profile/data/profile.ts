@@ -4,7 +4,7 @@ export const profile = {
     "A photographer, videographer, and content creator working across professional sport, automotive, commercial, and social media projects.",
   analytics: [
     { value: "2.8M+", label: "Accounts reached" },
-    { value: "526K", label: "Views · past 90 days" },
+    { value: "526K", label: "Views" },
     { value: "11K", label: "Interactions" },
     { value: "68%", label: "Non-follower viewership" },
   ],
@@ -63,7 +63,7 @@ export const profile = {
     {
       company: "Iso1v1",
       role: "Media Manager / Marketing",
-      dates: "Oct 2024 - Present",
+      dates: "Oct 2024",
       current: true,
       images: [
         {
@@ -123,7 +123,7 @@ export const profile = {
     {
       company: "Freelance",
       role: "Videographer / Photographer",
-      dates: "Oct 2023 - Present",
+      dates: "Oct 2023",
       current: true,
       images: [
         {
@@ -149,7 +149,6 @@ export const profile = {
       "JD Sports",
       "Foot Locker",
       "Mathew Richardson",
-      "And many more",
     ],
   },
   capabilities: [
