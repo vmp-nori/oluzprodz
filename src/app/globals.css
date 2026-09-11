@@ -15,7 +15,7 @@
   --charcoal: #202024;
   --smoke: #a7a5aa;
   --paper: #efedf0;
-  --accent: #c39bcc;
+  --accent: #7f8cff;
   --line: rgb(239 237 240 / 18%);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -623,8 +623,8 @@ footer h2 {
 }
 
 .career-block {
-  margin-top: clamp(4.5rem, 7vw, 7rem);
-  padding-top: clamp(4.5rem, 7vw, 7rem);
+  margin-top: clamp(3rem, 4vw, 4.5rem);
+  padding-top: clamp(3rem, 4vw, 4.5rem);
 }
 .career-intro h3 {
   max-width: 9ch;
