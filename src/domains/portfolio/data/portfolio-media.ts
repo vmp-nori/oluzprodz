@@ -183,6 +183,96 @@ export const portfolioPhotos = [
     height: 1024,
     alt: "Basketball player smiling with teammates during a gym session",
   },
+  {
+    id: "a7b5a963b9f2f7fb",
+    width: 1600,
+    height: 2400,
+    alt: "Padel player holding a red racket on an outdoor court",
+  },
+  {
+    id: "6ecc851cb4376fb8",
+    width: 1650,
+    height: 2400,
+    alt: "Padel player waiting with her racket on a blue outdoor court",
+  },
+  {
+    id: "485f4649db3e5d1f",
+    width: 1600,
+    height: 2400,
+    alt: "Guest in a New York cap holding a drink at a nighttime event",
+  },
+  {
+    id: "b68d06f3409d7635",
+    width: 1600,
+    height: 2400,
+    alt: "Performer singing into a microphone at an outdoor nighttime event",
+  },
+  {
+    id: "8c3b328673e5c490",
+    width: 1600,
+    height: 2400,
+    alt: "DJ mixing beneath vivid red stage lights",
+  },
+  {
+    id: "721e425976a1c3fe",
+    width: 1600,
+    height: 2400,
+    alt: "Smiling DJ raising an arm while performing behind the decks",
+  },
+  {
+    id: "e68b3afbfa4d0338",
+    width: 1600,
+    height: 2400,
+    alt: "Ensemble of dancers and musicians posing together outdoors",
+  },
+  {
+    id: "628b57d48236eb09",
+    width: 1600,
+    height: 2400,
+    alt: "DJ mixing under red lighting at a nightclub",
+  },
+  {
+    id: "bd06d5f2e342f081",
+    width: 1600,
+    height: 2400,
+    alt: "DJ performing beneath angular red stage lights",
+  },
+  {
+    id: "ded6fbe7983ea9f6",
+    width: 1600,
+    height: 2400,
+    alt: "Smiling guest in a teal outfit holding a red flower at an event",
+  },
+  {
+    id: "23180b082e94c8a8",
+    width: 1600,
+    height: 2400,
+    alt: "Guest in a pink dress posing at a nighttime event",
+  },
+  {
+    id: "7a6b215e33128151",
+    width: 1600,
+    height: 2400,
+    alt: "Seated guest in a green shirt and New York cap gesturing at the camera",
+  },
+  {
+    id: "3424401238d85eae",
+    width: 1600,
+    height: 2400,
+    alt: "Close-up of an Intrepid Campers canopy in a forest",
+  },
+  {
+    id: "bf92c058ce6ca326",
+    width: 1600,
+    height: 2400,
+    alt: "Monochrome close-up of the Intrepid Campers logo",
+  },
+  {
+    id: "f00c40cfa0cfbd96",
+    width: 1600,
+    height: 2400,
+    alt: "Off-road Toyota camper driving along a rocky forest trail",
+  },
 ] satisfies readonly PortfolioPhoto[];
 
 export const portfolioVideos = [

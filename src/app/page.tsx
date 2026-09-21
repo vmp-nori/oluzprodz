@@ -159,6 +159,36 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="about-section" aria-labelledby="about-title">
+        <div className="about-layout">
+          <div className="about-content">
+            <div className="about-heading">
+              <h2 id="about-title">About me</h2>
+            </div>
+
+            <div className="about-copy">
+              <p>
+                I&apos;m Olu, a photographer and filmmaker working where sport,
+                culture, and story meet. Whether I&apos;m courtside, on
+                location, or shaping an edit late into the night, I look for the
+                details that make a moment feel lived rather than staged—moving
+                with the action, staying close to the people, and making
+                something worth watching twice.
+              </p>
+            </div>
+          </div>
+
+          <figure className="about-portrait">
+            <Image
+              src="/media/experience/iso1v1-2.avif"
+              alt="Portrait of Olu smiling at an event"
+              fill
+              sizes="(min-width: 1024px) 38vw, 100vw"
+            />
+          </figure>
+        </div>
+      </section>
+
       <nav className="mobile-dock" aria-label="Mobile page sections">
         <a href="#top">Home</a>
         <a href="#work">Work</a>
@@ -166,27 +196,6 @@ export default function Home() {
         <a href="#capabilities">Toolkit</a>
         <a href="#contact">Contact</a>
       </nav>
-
-      <section className="work-section" id="work" aria-labelledby="work-title">
-        <div className="section-heading">
-          <h2 id="work-title">PORTFOLIO</h2>
-          <p>
-            Fast-turnaround photography and video for athletes, teams, events,
-            automotive campaigns, and social channels.
-          </p>
-        </div>
-
-        <PortfolioGallery />
-
-        <div className="archive-note">
-          <p>
-            Selected frames from courtside, field, event, and campaign work.
-          </p>
-          <a href={socialLinks.instagram.href} target="_blank" rel="noreferrer">
-            See current work on Instagram
-          </a>
-        </div>
-      </section>
 
       <section
         className="profile-section"
@@ -212,7 +221,7 @@ export default function Home() {
               </div>
             ))}
           </dl>
-          <p className="impact-window">*past 90 days</p>
+          <p className="impact-window">Data from the past 90 days</p>
         </section>
 
         <div className="experience-reels">
@@ -227,7 +236,33 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
 
+      <section className="work-section" id="work" aria-labelledby="work-title">
+        <div className="section-heading">
+          <h2 id="work-title">PORTFOLIO</h2>
+          <p>
+            Fast-turnaround photography and video for athletes, teams, events,
+            automotive campaigns, and social channels.
+          </p>
+        </div>
+
+        <PortfolioGallery />
+
+        <div className="archive-note">
+          <p>
+            Selected frames from courtside, field, event, and campaign work.
+          </p>
+          <a href={socialLinks.instagram.href} target="_blank" rel="noreferrer">
+            See current work on Instagram
+          </a>
+        </div>
+      </section>
+
+      <section
+        className="profile-section profile-section-continuation"
+        aria-label="Career experience"
+      >
         <div className="career-block">
           <div className="career-intro">
             <h3>Career timeline</h3>
