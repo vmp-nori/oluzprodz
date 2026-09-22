@@ -159,36 +159,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="about-section" aria-labelledby="about-title">
-        <div className="about-layout">
-          <div className="about-content">
-            <div className="about-heading">
-              <h2 id="about-title">About me</h2>
-            </div>
-
-            <div className="about-copy">
-              <p>
-                I&apos;m Olu, a photographer and filmmaker working where sport,
-                culture, and story meet. Whether I&apos;m courtside, on
-                location, or shaping an edit late into the night, I look for the
-                details that make a moment feel lived rather than staged—moving
-                with the action, staying close to the people, and making
-                something worth watching twice.
-              </p>
-            </div>
-          </div>
-
-          <figure className="about-portrait">
-            <Image
-              src="/media/experience/iso1v1-2.avif"
-              alt="Portrait of Olu smiling at an event"
-              fill
-              sizes="(min-width: 1024px) 38vw, 100vw"
-            />
-          </figure>
-        </div>
-      </section>
-
       <nav className="mobile-dock" aria-label="Mobile page sections">
         <a href="#top">Home</a>
         <a href="#work">Work</a>
@@ -202,27 +172,39 @@ export default function Home() {
         id="profile"
         aria-labelledby="profile-title"
       >
-        <div className="experience-heading">
-          <h2 id="profile-title">Experience</h2>
-          <p>
-            Olu turns live moments into visual stories built for attention, from
-            the sideline to the feed.
-          </p>
-        </div>
+        <div className="experience-overview">
+          <div className="experience-column">
+            <h2 id="profile-title">Experience</h2>
 
-        <section className="impact-ledger" aria-label="Performance metrics">
-          <dl>
-            {profile.analytics.map((metric, index) => (
-              <div key={metric.label}>
-                <dt>{metric.label}</dt>
-                <dd>
-                  <MetricValue value={metric.value} delay={index * 0.08} />
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <p className="impact-window">Data from the past 90 days</p>
-        </section>
+            <section className="impact-ledger" aria-label="Performance metrics">
+              <dl>
+                {profile.analytics.map((metric, index) => (
+                  <div key={metric.label}>
+                    <dt>{metric.label}</dt>
+                    <dd>
+                      <MetricValue value={metric.value} delay={index * 0.08} />
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="impact-window">Data from the past 90 days</p>
+            </section>
+          </div>
+
+          <section className="about-column" aria-labelledby="about-title">
+            <h2 id="about-title">About me</h2>
+            <div className="about-description-card">
+              <p>
+                I&apos;m Olu, a photographer, videographer, and content creator.
+                Since 2023, I&apos;ve worked courtside and on location for
+                basketball teams, automotive projects, events, and social
+                campaigns. I handle the shoot and the edit, delivering game-day
+                photo sets, short-form reels, and campaign content ready to
+                publish.
+              </p>
+            </div>
+          </section>
+        </div>
 
         <div className="experience-reels">
           <div className="experience-reel-column">
